@@ -28,6 +28,9 @@ class MarkdownNode {
    */
   heading() {
     const heading = this._ast.children.filter(d => d.type === types.HEADING)[0];
+    if (!heading) {
+      throw error.headingDoesNotExist();
+    }
     return new MarkdownNode(heading, { _ast: this._ast });
   }
 
@@ -43,6 +46,14 @@ class MarkdownNode {
    */
   get() {
     return remark().use(stringify).stringify(this._pointer);
+  }
+
+  /**
+   * Returns the markdown string version of the entire AST of this piece of 
+   * markdown.
+   */
+  getAll() {
+    return remark().use(stringify).stringify(this._ast);
   }
 
   /**

@@ -51,9 +51,32 @@ describe("get function", () => {
   });
 
   test("it can return text after getting a node", () => {
-    const expected = strip(base.heading().get());
-    const actual = strip(firstHeader);
-    expect(expected).toBe(actual);
+    const actual = strip(base.heading().get());
+    const expected = strip(firstHeader);
+    expect(actual).toBe(expected);
+  });
+});
+
+describe("getAll function", () => {
+  test("it has a getAll function", () => {
+    expect(base.getAll).toBeDefined();
+  });
+
+  test("it can return text", () => {
+    // We expect the string to change a bit spacing, but the content should be the same
+    // So we'll compare the stripped spacing to stripped spacing.
+    const actual = strip(base.getAll());
+    const expected = strip(exampleMarkdown);
+    expect(actual).toBe(expected);
+  });
+
+  test("it can return ALL the text after getting a node", () => {
+    const str = `# Hey there Folks
+    I'm mr foops
+    `;
+    const actual = strip(markdown(str).heading().getAll());
+    const expected = strip(str);
+    expect(actual).toBe(expected);
   });
 });
 
@@ -78,6 +101,10 @@ describe("heading function", () => {
   test("it can return a MarkdownNode", () => {
     const heading = base.heading();
     expect(MarkdownNode.prototype.isPrototypeOf(heading)).toBe(true);
+  });
+
+  test("it will throw an error if it can't find something", () => {
+    expect(() => markdown(" ").heading()).toThrow();
   });
 
   test("it can find a heading type", () => {
