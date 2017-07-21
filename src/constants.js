@@ -1,5 +1,6 @@
 module.exports = {
   types: {
-    HEADING: "heading"
+    HEADING: "heading",
+    PARAGRAPH: "paragraph"
   }
 };

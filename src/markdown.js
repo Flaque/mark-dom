@@ -35,6 +35,19 @@ class MarkdownNode {
   }
 
   /**
+   * Returns a new child node at the next paragraph.
+   */
+  paragraph() {
+    const paragraph = this._ast.children.filter(
+      d => d.type === types.PARAGRAPH
+    )[0];
+    if (!paragraph) {
+      throw error.paragraphDoesNotExist();
+    }
+    return new MarkdownNode(paragraph, { _ast: this._ast });
+  }
+
+  /**
    * Returns the type of the node you're currently on.
    */
   type() {
