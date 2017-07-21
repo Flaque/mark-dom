@@ -1,5 +1,7 @@
 **DONT USE ITS NOT READY YET**
 
+![sad gif](https://media.giphy.com/media/K1QnLV1caRpuw/giphy.gif)
+
 # mark-dom
 
 Mark-dom is basically jQuery but for markdown. 
