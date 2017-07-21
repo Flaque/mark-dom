@@ -1,3 +1,5 @@
+**DONT USE ITS NOT READY YET**
+
 # mark-dom
 
 Mark-dom is basically jQuery but for markdown. 
