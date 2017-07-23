@@ -3,6 +3,14 @@ const markdown = require("../index.js");
 
 const { base } = require("./testHelper.js");
 
+const specificParagraphMarkdownStr = `
+# First
+firstParagraph
+
+# Second
+secondParagraph
+`; // Note this formatting is important
+
 // Paragraph
 describe("paragraph function", () => {
   test("it has a paragraph function", () => {
@@ -22,7 +30,26 @@ describe("paragraph function", () => {
     expect(base.paragraph().type()).toBe("paragraph");
   });
 
-  test("it can find a paragraph inside of a header", () => {
+  test("it can find a paragraph inside of a heading", () => {
     expect(base.heading().paragraph().type()).toBe("paragraph");
+  });
+
+  test("it can find a specific paragraph", () => {
+    const mrk = markdown(specificParagraphMarkdownStr);
+    expect(mrk.paragraph("secondParagraph").value()).toBe("secondParagraph");
+  });
+
+  test("it can find a specific paragraph inside of a heading", () => {
+    const mrk = markdown(specificParagraphMarkdownStr);
+    expect(mrk.heading("First").paragraph("firstParagraph").value()).toBe(
+      "firstParagraph"
+    );
+  });
+
+  test("it will error if it can't find a specific item", () => {
+    const mrk = markdown(specificParagraphMarkdownStr);
+    expect(() => {
+      mrk.paragraph("I DONT EXIST").value();
+    }).toThrow();
   });
 });

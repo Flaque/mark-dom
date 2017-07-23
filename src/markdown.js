@@ -49,10 +49,11 @@ class MarkdownNode {
   /**
    * Returns a new child node at the next paragraph.
    */
-  paragraph() {
-    const paragraph = this._ast.children.filter(
-      d => d.type === types.PARAGRAPH
-    )[0];
+  paragraph(searchWord) {
+    const paragraph = searchWord
+      ? query.where(this._ast, types.PARAGRAPH, searchWord)
+      : query.first(this._ast, types.PARAGRAPH);
+
     throwIfNotExist(paragraph, error.paragraphDoesNotExist);
     return new MarkdownNode(paragraph, { _ast: this._ast });
   }
