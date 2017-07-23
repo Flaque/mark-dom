@@ -3,6 +3,13 @@ const markdown = require("../index.js");
 
 const { base } = require("./testHelper.js");
 
+const specificHeadersMarkdownStr = `
+# First
+some text here.
+
+# Second
+`; // Note this formatting is important
+
 // Heading
 describe("heading function", () => {
   test("it has a heading function", () => {
@@ -24,5 +31,17 @@ describe("heading function", () => {
 
   test("it can find a child header", () => {
     expect(base.heading().heading().type()).toBe("heading");
+  });
+
+  test("it can find the first header", () => {
+    const mrk = markdown(specificHeadersMarkdownStr);
+
+    expect(mrk.heading().value()).toBe("First");
+  });
+
+  test("it can find a specific header", () => {
+    const mrk = markdown(specificHeadersMarkdownStr);
+
+    expect(mrk.heading("Second").value()).toBe("Second");
   });
 });

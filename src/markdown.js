@@ -38,12 +38,9 @@ class MarkdownNode {
    * Returns a new child node at the next heading.
    */
   heading(searchWord) {
-    let heading;
-    if (!searchWord) {
-      heading = this._ast.children.filter(d => d.type === types.HEADING)[0];
-    } else {
-      heading = query.where(this._ast, types.HEADING, query);
-    }
+    const heading = searchWord
+      ? query.where(this._ast, types.HEADING, searchWord)
+      : query.first(this._ast, types.HEADING);
 
     throwIfNotExist(heading, error.headingDoesNotExist);
     return new MarkdownNode(heading, { _ast: this._ast });
