@@ -25,6 +25,7 @@
     "eslint-plugin-unicorn": "^2.1.2"
   },
   "scripts": {
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "jest"
   }
 }
