@@ -2,7 +2,20 @@ const remark = require("remark");
 const stringify = require("remark-stringify");
 const error = require("./error.js");
 const { types } = require("./constants.js");
+const query = require("./query");
 
+/**
+ * Helpers
+ */
+
+function throwIfNotExist(component, errorType) {
+  if (!component) throw errorType;
+}
+
+/**
+ * A MarkdownNode is an object describing a node in the 
+ * Abstract Syntax Tree (AST) of the markdown.
+ */
 class MarkdownNode {
   /**
    * A markdown node takes either an Abstract Syntax Tree (AST)
@@ -24,11 +37,15 @@ class MarkdownNode {
   /**
    * Returns a new child node at the next heading.
    */
-  heading() {
-    const heading = this._ast.children.filter(d => d.type === types.HEADING)[0];
-    if (!heading) {
-      throw error.headingDoesNotExist();
+  heading(searchWord) {
+    let heading;
+    if (!searchWord) {
+      heading = this._ast.children.filter(d => d.type === types.HEADING)[0];
+    } else {
+      heading = query.where(this._ast, types.HEADING, query);
     }
+
+    throwIfNotExist(heading, error.headingDoesNotExist);
     return new MarkdownNode(heading, { _ast: this._ast });
   }
 
@@ -39,9 +56,7 @@ class MarkdownNode {
     const paragraph = this._ast.children.filter(
       d => d.type === types.PARAGRAPH
     )[0];
-    if (!paragraph) {
-      throw error.paragraphDoesNotExist();
-    }
+    throwIfNotExist(paragraph, error.paragraphDoesNotExist);
     return new MarkdownNode(paragraph, { _ast: this._ast });
   }
 
