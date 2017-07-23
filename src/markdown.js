@@ -1,6 +1,4 @@
 const remark = require("remark");
-const parser = require("remark-parse");
-const unified = require("unified");
 const stringify = require("remark-stringify");
 const error = require("./error.js");
 const { types } = require("./constants.js");

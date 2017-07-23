@@ -1,4 +1,3 @@
-const MarkdownNode = require("../markdown.js");
 const markdown = require("../index.js");
 
 // Helpers

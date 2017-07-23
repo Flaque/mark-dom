@@ -1,4 +1,4 @@
-const { base, exampleMarkdown } = require("./testHelper.js");
+const { base } = require("./testHelper.js");
 
 // Set
 describe("set function", () => {

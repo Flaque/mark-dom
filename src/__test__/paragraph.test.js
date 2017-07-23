@@ -1,4 +1,5 @@
 const MarkdownNode = require("../markdown.js");
+const markdown = require("../index.js");
 
 const { base } = require("./testHelper.js");
 
