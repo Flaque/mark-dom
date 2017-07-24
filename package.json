@@ -23,9 +23,11 @@
     "eslint-plugin-prettier": "^2.1.2",
     "eslint-plugin-unicorn": "^2.1.2",
     "jest": "^20.0.4",
+    "minami": "^1.2.3",
     "prettier": "^1.5.3"
   },
   "scripts": {
+    "docs": "rm -r docs; jsdoc * -t ./node_modules/minami/ -d docs",
     "lint": "eslint src",
     "test": "jest",
     "test-watch": "jest --watch"
