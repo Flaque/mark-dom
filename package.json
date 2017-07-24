@@ -27,7 +27,7 @@
     "prettier": "^1.5.3"
   },
   "scripts": {
-    "docs": "rm -r docs; jsdoc * -t ./node_modules/minami/ -d docs",
+    "docs": "rm -r docs; jsdoc src/*.js -t ./node_modules/minami/ -d docs -R README.md",
     "lint": "eslint src",
     "test": "jest",
     "test-watch": "jest --watch"
