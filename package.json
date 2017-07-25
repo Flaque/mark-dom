@@ -19,6 +19,7 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-react": "^6.23.0",
+    "coveralls": "^2.13.1",
     "eslint": "^4.3.0",
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.7.0",
@@ -37,7 +38,12 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   }
 }
