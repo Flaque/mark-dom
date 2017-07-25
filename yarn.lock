@@ -1068,7 +1068,7 @@ error-ex@^1.2.0:
   dependencies:
     is-arrayish "^0.2.1"
 
-escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
+escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.4, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
@@ -2241,6 +2241,12 @@ markdown-to-ast@^4.0.0:
     structured-source "^3.0.2"
     traverse "^0.6.6"
 
+matcher@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/matcher/-/matcher-1.0.0.tgz#aaf0c4816eb69b92094674175625f3466b0e3e19"
+  dependencies:
+    escape-string-regexp "^1.0.4"
+
 mdast-util-compact@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdast-util-compact/-/mdast-util-compact-1.0.1.tgz#cdb5f84e2b6a2d3114df33bd05d9cb32e3c4083a"
@@ -3265,6 +3271,10 @@ which@^1.2.12, which@^1.2.9:
   resolved "https://registry.yarnpkg.com/which/-/which-1.2.14.tgz#9a87c4378f03e827cecaf1acdf56c736c01c14e5"
   dependencies:
     isexe "^2.0.0"
+
+wildcard@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/wildcard/-/wildcard-1.1.2.tgz#a7020453084d8cd2efe70ba9d3696263de1710a5"
 
 window-size@0.1.0:
   version "0.1.0"

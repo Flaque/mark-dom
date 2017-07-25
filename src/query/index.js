@@ -1,28 +1,4 @@
-const _ = require("lodash");
-
-/**
- * TODO: turn this into a glob matching statement.
- * @param {String} a 
- * @param {String} b 
- */
-function valuesMatch(a, b) {
-  return a === b;
-}
-
-/**
- * Returns true if and child of the node contains the query
- * @param {Object} node 
- * @param {String} query 
- */
-function hasValue(node, query) {
-  if (valuesMatch(node.value, query)) return true; // We found it!
-  if (_.isEmpty(node.children)) return false; // We hit a dead end :(
-
-  // Search through every child!
-  const searches = node.children.map(c => hasValue(c, query));
-
-  return _.some(searches); // if any work, return true!
-}
+const { hasValue } = require("./util.js");
 
 /**
  * Search through the ast for a node that matches the `type` and has a child with the `value`.
