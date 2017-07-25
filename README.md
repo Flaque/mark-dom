@@ -1,4 +1,4 @@
-**DONT USE ITS NOT READY YET**
+**YOU CAN USE IT BUT ITS PROBABLY BROKEN**
 
 ![sad gif](https://media.giphy.com/media/K1QnLV1caRpuw/giphy.gif)
 
@@ -7,6 +7,8 @@
 Mark-dom is basically jQuery but for markdown. 
 
 If you've ever wanted to write a script that only edits a single part of a markdown doc and leaves the rest alone, then you're gonna like mark-dom. 
+
+* [Docs](https://github.com/Flaque/mark-dom)
 
 ## Example 
 
