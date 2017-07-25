@@ -8,7 +8,7 @@ Mark-dom is basically jQuery but for markdown.
 
 If you've ever wanted to write a script that only edits a single part of a markdown doc and leaves the rest alone, then you're gonna like mark-dom. 
 
-* [Docs](https://github.com/Flaque/mark-dom)
+* [Docs](https://flaque.github.io/mark-dom/MarkdownNode.html)
 
 ## Example 
 
