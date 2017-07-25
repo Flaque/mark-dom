@@ -18,11 +18,17 @@ function throwIfNotExist(component, errorType) {
 /**
  * A MarkdownNode is an object describing a node in the 
  * Abstract Syntax Tree (AST) of the markdown.
+ * 
+ * @example 
+ * import mrk = require("mark-dom");
+ * mrk("# Hello").get(); // Will return "# Hello"
+ * 
  */
 class MarkdownNode {
   /**
    * A markdown node takes either an Abstract Syntax Tree (AST)
    * or a markdown string.
+   * 
    * @param {ast|string} src 
    */
   constructor(src, options) {
@@ -38,8 +44,41 @@ class MarkdownNode {
   }
 
   /**
-   * Returns a new child node at the next heading.
-   * @param {String} searchWord A string to search for in the heading.
+   * Returns the markdown string version of the node you're currently on.
+   * @return {String}
+   */
+  get() {
+    return remark().use(stringify).stringify(this._pointer).trim();
+  }
+
+  /**
+   * Returns the markdown string version of the entire AST of this piece of 
+   * markdown.
+   * @return {String}
+   */
+  getAll() {
+    return remark().use(stringify).stringify(this._ast).trim();
+  }
+
+  /**
+   * Gets a new MarkdownNode that you can branch off with.
+   * 
+   * @example 
+   * // Returns a MarkdownNode at the heading.
+   * mrk("# Hello").heading("H*");
+   * 
+   * @example 
+   * // Returns a MarkdownNode representing "# First"
+   * mrk(`
+   * # First 
+   * some text
+   * 
+   * # Second
+   * other text
+   * `).heading();
+   * 
+   * @param {String} searchWord A string to search for in the heading. Can use wildcard * syntax.
+   * @return {MarkdownNode} A new child node at the next heading.
    */
   heading(searchWord) {
     const heading = searchWord
@@ -52,7 +91,9 @@ class MarkdownNode {
 
   /**
    * Returns a new child node at the next paragraph.
-   * @param {String} searchWord A string to search for in the paragraph.
+   * 
+   * @param {String} searchWord A string to search for in the paragraph. Can use wildcard * syntax.
+   * @return {MarkdownNode}
    */
   paragraph(searchWord) {
     const paragraph = searchWord
@@ -64,48 +105,50 @@ class MarkdownNode {
   }
 
   /**
+   * Sets the current node's value to the str input
+   * @param {String} str 
+   * @return {MarkdownNode}
+   */
+  set(str) {
+    this._pointer.children[0].value = str; // TODO: This is probably going to have some weird effects.
+
+    return new MarkdownNode(this._pointer, { _ast: this._ast });
+  }
+
+  /**
    * Returns the type of the node you're currently on.
+   * 
+   * @example 
+   * mrk("# Hello").heading().type(); // Returns "heading"
+   * 
+   * @example
+   * mark("Im a paragraph").paragraph().type(); // Returns "paragraph"
+   * 
+   * @example
+   * mrk("hello").type(); // Returns "root"
+   * 
+   * @return {String} the type of node you're currently on. 
    */
   type() {
     return this._pointer.type;
   }
 
   /**
-   * Returns the markdown string version of the node you're currently on.
-   */
-  get() {
-    return remark().use(stringify).stringify(this._pointer);
-  }
-
-  /**
-   * Returns the markdown string version of the entire AST of this piece of 
-   * markdown.
-   */
-  getAll() {
-    return remark().use(stringify).stringify(this._ast);
-  }
-
-  /**
    * Returns the value of the node you're on.
    * If get() returns the markdown string of where you're at, this 
-   * returns the actual value of where you're at. For example:
+   * returns the actual value of where you're at. 
    * 
-   * given a header like "# Hello I am header",
-   * .value() returns "Hello I am header"
-   * and .get() returns "# Hello I am header"
+   * @example
+   * mrk("# Hello I am header").value(); // Returns "Hello I am header"
+   * 
+   * @example
+   * var m = mrk("# Hello I am header");
+   * const isTrue = m.get() != m.value(); // True
+   * 
+   * @return {String} The string value of the node you're on.
    */
   value() {
     return this._pointer.children[0].value; // this is probably gonna have some weird effects.
-  }
-
-  /**
-   * Sets the current node's value to the str input
-   * @param {String} str 
-   */
-  set(str) {
-    this._pointer.children[0].value = str; // TODO: This is probably going to have some weird effects.
-
-    return new MarkdownNode(this._pointer, { _ast: this._ast });
   }
 }
 

@@ -6,3 +6,7 @@ test("mrk can throw an error when passed a function", () => {
     mrk(func);
   }).toThrow();
 });
+
+test("mrk can get some basic markdown", () => {
+  expect(mrk("# Hello").get()).toBe("# Hello");
+});

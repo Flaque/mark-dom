@@ -105,7 +105,7 @@ or a markdown string.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line22">line 22</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -193,6 +193,14 @@ or a markdown string.
 
 
 
+<div class="section-examples">
+<h5>Example</h5>
+
+    <pre class="prettyprint"><code>import mrk = require("mark-dom");
+mrk("# Hello").get(); // Will return "# Hello"</code></pre>
+
+</div>
+
 </div>
     
     </div>
@@ -218,7 +226,7 @@ or a markdown string.
 
     
 
-    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -261,7 +269,7 @@ or a markdown string.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line76">line 76</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -292,6 +300,27 @@ or a markdown string.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>String</code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
 
 
 </div>
@@ -301,7 +330,7 @@ or a markdown string.
 
     
 
-    <h4 class="name" id="getAll"><span class="type-signature"></span>getAll<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="getAll"><span class="type-signature"></span>getAll<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -345,7 +374,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line84">line 84</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -376,6 +405,27 @@ markdown.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>String</code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
 
 
 </div>
@@ -385,14 +435,14 @@ markdown.
 
     
 
-    <h4 class="name" id="heading"><span class="type-signature"></span>heading<span class="signature">(searchWord)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="heading"><span class="type-signature"></span>heading<span class="signature">(searchWord)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns a new child node at the next heading.
+    Gets a new MarkdownNode that you can branch off with.
 </div>
 
 
@@ -428,7 +478,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line44">line 44</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line83">line 83</a>
     </li></ul></dd>
     
 
@@ -489,7 +539,7 @@ markdown.
             
 
             <td class="description last">
-                A string to search for in the heading.
+                A string to search for in the heading. Can use wildcard * syntax.
                 
             </td>
         </tr>
@@ -511,7 +561,49 @@ markdown.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
 
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code><a href="MarkdownNode.html">MarkdownNode</a></code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    A new child node at the next heading.
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>// Returns a MarkdownNode at the heading.
+mrk("# Hello").heading("H*");</code></pre>
+
+    <pre class="prettyprint"><code>// Returns a MarkdownNode representing "# First"
+mrk(`
+# First 
+some text
+
+# Second
+other text
+`).heading();</code></pre>
+
+</div>
 
 </div>
         
@@ -520,7 +612,7 @@ markdown.
 
     
 
-    <h4 class="name" id="paragraph"><span class="type-signature"></span>paragraph<span class="signature">(searchWord)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="paragraph"><span class="type-signature"></span>paragraph<span class="signature">(searchWord)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
 
     
 
@@ -563,7 +655,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line57">line 57</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line98">line 98</a>
     </li></ul></dd>
     
 
@@ -624,7 +716,7 @@ markdown.
             
 
             <td class="description last">
-                A string to search for in the paragraph.
+                A string to search for in the paragraph. Can use wildcard * syntax.
                 
             </td>
         </tr>
@@ -646,6 +738,27 @@ markdown.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code><a href="MarkdownNode.html">MarkdownNode</a></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
 
 
 </div>
@@ -655,7 +768,7 @@ markdown.
 
     
 
-    <h4 class="name" id="set"><span class="type-signature"></span>set<span class="signature">(str)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="set"><span class="type-signature"></span>set<span class="signature">(str)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
 
     
 
@@ -698,7 +811,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line105">line 105</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -781,6 +894,27 @@ markdown.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code><a href="MarkdownNode.html">MarkdownNode</a></code></span>
+
+
+    </dd>
+</dl>
+
+
+    
+</div>
+
 
 
 </div>
@@ -790,7 +924,7 @@ markdown.
 
     
 
-    <h4 class="name" id="type"><span class="type-signature"></span>type<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="type"><span class="type-signature"></span>type<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -833,7 +967,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line69">line 69</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line132">line 132</a>
     </li></ul></dd>
     
 
@@ -864,7 +998,43 @@ markdown.
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
 
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>String</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    the type of node you're currently on.
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>mrk("# Hello").heading().type(); // Returns "heading"</code></pre>
+
+    <pre class="prettyprint"><code>mark("Im a paragraph").paragraph().type(); // Returns "paragraph"</code></pre>
+
+    <pre class="prettyprint"><code>mrk("hello").type(); // Returns "root"</code></pre>
+
+</div>
 
 </div>
         
@@ -873,7 +1043,7 @@ markdown.
 
     
 
-    <h4 class="name" id="value"><span class="type-signature"></span>value<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="value"><span class="type-signature"></span>value<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
@@ -882,11 +1052,7 @@ markdown.
 <div class="description">
     Returns the value of the node you're on.
 If get() returns the markdown string of where you're at, this 
-returns the actual value of where you're at. For example:
-
-given a header like "# Hello I am header",
-.value() returns "Hello I am header"
-and .get() returns "# Hello I am header"
+returns the actual value of where you're at.
 </div>
 
 
@@ -922,7 +1088,7 @@ and .get() returns "# Hello I am header"
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line97">line 97</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line150">line 150</a>
     </li></ul></dd>
     
 
@@ -953,7 +1119,42 @@ and .get() returns "# Hello I am header"
 
 
 
+<div class="section-returns">
+<h5>Returns:</h5>
 
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>String</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    The string value of the node you're on.
+</div>
+
+    
+</div>
+
+
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>mrk("# Hello I am header").value(); // Returns "Hello I am header"</code></pre>
+
+    <pre class="prettyprint"><code>var m = mrk("# Hello I am header");
+const isTrue = m.get() != m.value(); // True</code></pre>
+
+</div>
 
 </div>
         
@@ -974,7 +1175,7 @@ and .get() returns "# Hello I am header"
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Sun Jul 23 2017 21:49:13 GMT-0700 (PDT) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Jul 24 2017 20:22:31 GMT-0700 (PDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
