@@ -52,4 +52,10 @@ describe("paragraph function", () => {
       mrk.paragraph("I DONT EXIST").value();
     }).toThrow();
   });
+
+  test("it can find a header via glob syntax", () => {
+    const mrk = markdown(specificParagraphMarkdownStr);
+
+    expect(mrk.paragraph("Se*").value()).toBe("secondParagraph");
+  });
 });

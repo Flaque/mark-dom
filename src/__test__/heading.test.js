@@ -44,4 +44,10 @@ describe("heading function", () => {
 
     expect(mrk.heading("Second").value()).toBe("Second");
   });
+
+  test("it can find a header via glob syntax", () => {
+    const mrk = markdown(specificHeadersMarkdownStr);
+
+    expect(mrk.heading("Se*").value()).toBe("Second");
+  });
 });
