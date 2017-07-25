@@ -61,7 +61,7 @@ Abstract Syntax Tree (AST) of the markdown.</div>
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="MarkdownNode"><span class="type-signature"></span>new MarkdownNode<span class="signature">(src)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="MarkdownNode"><span class="type-signature"></span>new MarkdownNode<span class="signature">(src, options<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
 
     
 
@@ -105,7 +105,7 @@ or a markdown string.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line27">line 27</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -137,6 +137,8 @@ or a markdown string.
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -165,11 +167,55 @@ or a markdown string.
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
             <td class="description last">
+                The markdown string that we'll parse into an AST.
                 
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>JSON</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">
+                Options to be passed into MarkdownNode
                 
             </td>
         </tr>
@@ -269,7 +315,7 @@ mrk("# Hello").get(); // Will return "# Hello"</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line50">line 50</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -317,6 +363,10 @@ mrk("# Hello").get(); // Will return "# Hello"</code></pre>
     </dd>
 </dl>
 
+
+<div class="param-desc">
+    The String version of the CURRENT node we're on.
+</div>
 
     
 </div>
@@ -374,7 +424,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line59">line 59</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -423,6 +473,10 @@ markdown.
 </dl>
 
 
+<div class="param-desc">
+    The String version of the ENTIRE compiled Markdown AST.
+</div>
+
     
 </div>
 
@@ -435,14 +489,14 @@ markdown.
 
     
 
-    <h4 class="name" id="heading"><span class="type-signature"></span>heading<span class="signature">(searchWord)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
+    <h4 class="name" id="heading"><span class="type-signature"></span>heading<span class="signature">(searchWord<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Gets a new MarkdownNode that you can branch off with.
+    Gets a new MarkdownNode representing the first heading it finds.
 </div>
 
 
@@ -478,7 +532,7 @@ markdown.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line83">line 83</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line87">line 87</a>
     </li></ul></dd>
     
 
@@ -510,6 +564,8 @@ markdown.
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -534,6 +590,16 @@ markdown.
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -612,14 +678,14 @@ other text
 
     
 
-    <h4 class="name" id="paragraph"><span class="type-signature"></span>paragraph<span class="signature">(searchWord)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
+    <h4 class="name" id="paragraph"><span class="type-signature"></span>paragraph<span class="signature">(searchWord<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="MarkdownNode.html">MarkdownNode</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns a new child node at the next paragraph.
+    Gets a new MarkdownNode representing the first paragraph it finds.
 </div>
 
 
@@ -655,7 +721,7 @@ other text
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line98">line 98</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -687,6 +753,8 @@ other text
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -711,6 +779,16 @@ other text
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -760,6 +838,23 @@ other text
 </div>
 
 
+
+<div class="section-examples">
+<h5>Examples</h5>
+
+    <pre class="prettyprint"><code>// Returns a MarkdownNode at the paragraph.
+mrk("Hello").paragraph("H*");</code></pre>
+
+    <pre class="prettyprint"><code>// Returns a MarkdownNode representing "First Paragraph"
+mrk(`
+# First 
+First Paragraph
+
+# Second
+Second Paragraph
+`).paragraph();</code></pre>
+
+</div>
 
 </div>
         
@@ -811,7 +906,7 @@ other text
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line112">line 112</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line130">line 130</a>
     </li></ul></dd>
     
 
@@ -967,7 +1062,7 @@ other text
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line132">line 132</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line150">line 150</a>
     </li></ul></dd>
     
 
@@ -1088,7 +1183,7 @@ returns the actual value of where you're at.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line150">line 150</a>
+        <a href="markdown.js.html">markdown.js</a>, <a href="markdown.js.html#line168">line 168</a>
     </li></ul></dd>
     
 
@@ -1175,7 +1270,7 @@ const isTrue = m.get() != m.value(); // True</code></pre>
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Jul 24 2017 20:22:31 GMT-0700 (PDT) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Mon Jul 24 2017 20:58:22 GMT-0700 (PDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>

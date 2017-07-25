@@ -1,3 +1,6 @@
+/**
+ * @file Defines a MarkdownNode, the main abstraction for the Markdown AST.
+ */
 const remark = require("remark");
 const stringify = require("remark-stringify");
 const error = require("./error.js");
@@ -29,7 +32,8 @@ class MarkdownNode {
    * A markdown node takes either an Abstract Syntax Tree (AST)
    * or a markdown string.
    * 
-   * @param {ast|string} src 
+   * @param {ast|string} src The markdown string that we'll parse into an AST.
+   * @param {JSON} [options] Options to be passed into MarkdownNode
    */
   constructor(src, options) {
     if (typeof src === "object") {
@@ -45,7 +49,15 @@ class MarkdownNode {
 
   /**
    * Returns the markdown string version of the node you're currently on.
-   * @return {String}
+   * 
+   * @example
+   * // Returns "## Subheader"
+   * mrk(`
+   * # Hello
+   * ## Subheader
+   * `).heading().heading().get();
+   * 
+   * @return {String} The String version of the CURRENT node we're on. 
    */
   get() {
     return remark().use(stringify).stringify(this._pointer).trim();
@@ -54,14 +66,14 @@ class MarkdownNode {
   /**
    * Returns the markdown string version of the entire AST of this piece of 
    * markdown.
-   * @return {String}
+   * @return {String} The String version of the ENTIRE compiled Markdown AST.
    */
   getAll() {
     return remark().use(stringify).stringify(this._ast).trim();
   }
 
   /**
-   * Gets a new MarkdownNode that you can branch off with.
+   * Gets a new MarkdownNode representing the first heading it finds.
    * 
    * @example 
    * // Returns a MarkdownNode at the heading.
@@ -77,7 +89,7 @@ class MarkdownNode {
    * other text
    * `).heading();
    * 
-   * @param {String} searchWord A string to search for in the heading. Can use wildcard * syntax.
+   * @param {String} [searchWord] A string to search for in the heading. Can use wildcard * syntax.
    * @return {MarkdownNode} A new child node at the next heading.
    */
   heading(searchWord) {
@@ -90,9 +102,23 @@ class MarkdownNode {
   }
 
   /**
-   * Returns a new child node at the next paragraph.
+   * Gets a new MarkdownNode representing the first paragraph it finds.
    * 
-   * @param {String} searchWord A string to search for in the paragraph. Can use wildcard * syntax.
+   * @example 
+   * // Returns a MarkdownNode at the paragraph.
+   * mrk("Hello").paragraph("H*");
+   * 
+   * @example 
+   * // Returns a MarkdownNode representing "First Paragraph"
+   * mrk(`
+   * # First 
+   * First Paragraph
+   * 
+   * # Second
+   * Second Paragraph
+   * `).paragraph();
+   * 
+   * @param {String} [searchWord] A string to search for in the paragraph. Can use wildcard * syntax.
    * @return {MarkdownNode}
    */
   paragraph(searchWord) {

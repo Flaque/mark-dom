@@ -1,5 +1,5 @@
 const MarkdownNode = require("../markdown.js");
-const markdown = require("../index.js");
+const mrk = require("../index.js");
 
 const { base } = require("./testHelper.js");
 
@@ -22,32 +22,42 @@ describe("heading function", () => {
   });
 
   test("it will throw an error if it can't find something", () => {
-    expect(() => markdown(" ").heading()).toThrow();
+    expect(() => mrk(" ").heading()).toThrow();
   });
 
   test("it can find a heading type", () => {
     expect(base.heading().type()).toBe("heading");
   });
 
-  test("it can find a child header", () => {
+  test("it can find a child heading", () => {
     expect(base.heading().heading().type()).toBe("heading");
   });
 
-  test("it can find the first header", () => {
-    const mrk = markdown(specificHeadersMarkdownStr);
+  test("it can return a child's child heading's text", () => {
+    const str = `
+# Hello
+## Subheader
+    `;
 
-    expect(mrk.heading().value()).toBe("First");
+    console.log(JSON.stringify(mrk(str).heading()._ast, null, 2));
+    expect(mrk(str).heading().heading().get()).toBe("## Subheader");
+  });
+
+  test("it can find the first header", () => {
+    const mrkNode = mrk(specificHeadersMarkdownStr);
+
+    expect(mrkNode.heading().value()).toBe("First");
   });
 
   test("it can find a specific header", () => {
-    const mrk = markdown(specificHeadersMarkdownStr);
+    const mrkNode = mrk(specificHeadersMarkdownStr);
 
-    expect(mrk.heading("Second").value()).toBe("Second");
+    expect(mrkNode.heading("Second").value()).toBe("Second");
   });
 
   test("it can find a header via glob syntax", () => {
-    const mrk = markdown(specificHeadersMarkdownStr);
+    const mrkNode = mrk(specificHeadersMarkdownStr);
 
-    expect(mrk.heading("Se*").value()).toBe("Second");
+    expect(mrkNode.heading("Se*").value()).toBe("Second");
   });
 });
