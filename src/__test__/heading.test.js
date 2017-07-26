@@ -38,9 +38,7 @@ describe("heading function", () => {
 # Hello
 ## Subheader
     `;
-
-    console.log(JSON.stringify(mrk(str).heading()._ast, null, 2));
-    expect(mrk(str).heading().heading().get()).toBe("## Subheader");
+    expect(mrk(str).heading("## *").get()).toBe("## Subheader");
   });
 
   test("it can find the first header", () => {

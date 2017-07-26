@@ -55,7 +55,7 @@ class MarkdownNode {
    * mrk(`
    * # Hello
    * ## Subheader
-   * `).heading().heading().get();
+   * `).heading("## *").get();
    * 
    * @return {String} The String version of the CURRENT node we're on. 
    */
