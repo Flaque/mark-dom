@@ -1,4 +1,3 @@
-const mrk = require("../index.js");
 const {
   base,
   firstHeader,
