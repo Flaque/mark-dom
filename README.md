@@ -1,10 +1,19 @@
 # mark-dom
 
+[![Build Status](https://travis-ci.org/Flaque/mark-dom.svg?branch=master)](https://travis-ci.org/Flaque/mark-dom)
+[![Coverage Status](https://coveralls.io/repos/github/Flaque/mark-dom/badge.svg?branch=master)](https://coveralls.io/github/Flaque/mark-dom?branch=master)
+
 Mark-dom is basically jQuery but for markdown. 
 
 If you've ever wanted to write a script that only edits a single part of a markdown doc and leaves the rest alone, then hopefully this brings you joy.
 
-* [Docs](https://flaque.github.io/mark-dom/MarkdownNode.html)
+[Docs Here.](https://flaque.github.io/mark-dom/MarkdownNode.html)
+
+## Install
+
+```
+$ npm install mark-dom
+```
 
 ## Example 
 
