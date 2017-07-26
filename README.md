@@ -1,37 +1,61 @@
-**YOU CAN USE IT BUT ITS PROBABLY BROKEN**
-
-![sad gif](https://media.giphy.com/media/K1QnLV1caRpuw/giphy.gif)
-
 # mark-dom
 
 Mark-dom is basically jQuery but for markdown. 
 
-If you've ever wanted to write a script that only edits a single part of a markdown doc and leaves the rest alone, then you're gonna like mark-dom. 
+If you've ever wanted to write a script that only edits a single part of a markdown doc and leaves the rest alone, then hopefully this brings you joy.
 
 * [Docs](https://flaque.github.io/mark-dom/MarkdownNode.html)
 
 ## Example 
 
-``` js 
-const mark = require('mark-dom');
+### Our Example Markdown
+``` markdown
+<!-- This is some markdown -->
+# Hello there
+I am some markdown
 
-const str = `
-# Now
-this is a story all about how
-## My Life
-got flipped-turned upside down
-### And
-I'd like to take a minute
-#### To Sit Right There
-I'll tell you how I became the prince of a town called Bel Air
-`;
+## Dogs are cool
+They bring you friendly joy.
 
-const output = mark(str)
-    .heading()
-        .paragraph()
-        .set("this is a tv-show all about how")
+## World peace is cool
+Let's bake some cakes and be nice to each other
+```
+
+### Get a header value
+``` js
+import mrk = require("mark-dom");
+
+// Returns "World peace is cool"
+mrk(thatMarkdownStr)
+    .heading("## World peace *")
+    .value();
+```
+
+### Change a header
+``` js
+import mrk = require("mark-dom");
+
+// Return a new markdown string where the first header 
+// is "Stuff that's cool"
+mrk(thatMarkdownStr)
+    .heading() // gets the first heading!
+    .set("Stuff that's cool");
     .getAll();
 ```
+
+### Change an entire paragraph
+``` js 
+import mrk = require("mark-dom");
+
+// Change the "dogs" header and return a new markdown string
+mrk(thatMarkdownStr)
+    .heading("## * ") // Get the first sub header
+    .paragraph()
+    .set("They make you smile.")
+    .getAll();
+```
+
+
 
 ## Status
 Mark-dom is really just an experiment at the moment and I haven't really fleshed out all of the API that I want yet. Things might change, at the time that I'm writing this, I don't think it even works.
