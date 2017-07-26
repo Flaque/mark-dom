@@ -1,24 +1,18 @@
 {
   "name": "mark-dom",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "markdown-to-ast": "^4.0.0",
+    "lodash": "^4.17.4",
     "matcher": "^1.0.0",
     "remark": "^7.0.1",
-    "remark-parse": "^3.0.1",
-    "remark-stringify": "^3.0.1",
-    "unified": "^6.1.5",
-    "wildcard": "^1.1.2"
+    "remark-stringify": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-jest": "^19.0.0",
-    "babel-preset-2017": "^0.0.0",
     "babel-preset-es2015": "^6.22.0",
-    "babel-preset-es2017": "^6.24.1",
-    "babel-preset-react": "^6.23.0",
     "coveralls": "^2.13.1",
     "eslint": "^4.3.0",
     "eslint-plugin-fp": "^2.3.0",
@@ -38,12 +32,7 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "coverageReporters": [
-      "text",
-      "lcov"
-    ]
+    "coveragePathIgnorePatterns": ["/node_modules/"],
+    "coverageReporters": ["text", "lcov"]
   }
 }
