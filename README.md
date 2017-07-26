@@ -64,10 +64,16 @@ mrk(thatMarkdownStr)
     .getAll();
 ```
 
-
-
 ## Status
 Mark-dom is really just an experiment at the moment and I haven't really fleshed out all of the API that I want yet. Things might change, at the time that I'm writing this, I don't think it even works.
+
+### TODO list
+* ~Glob syntax `*`~
+* Find tables
+* Find code 
+* Find lists
+* Putting a 2d array in `set()` will create a table
+* Putting a 1d array in `set()` will create a list
 
 ## How's it work? 
 Mark-dom uses [remark](https://github.com/wooorm/remark/tree/master/packages/remark) and it's ecosystem to parse the markdown into an Abstract Syntax Tree (AST), then it lets you navigate and edit the tree with an API and eventually construct a new markdown document by compiling the tree down to a string.
