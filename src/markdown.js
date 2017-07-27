@@ -3,6 +3,7 @@
  */
 const remark = require("remark");
 const stringify = require("remark-stringify");
+const _ = require("lodash");
 const error = require("./error.js");
 const { types } = require("./constants.js");
 const query = require("./query");
@@ -37,10 +38,13 @@ class MarkdownNode {
    */
   constructor(src, options) {
     if (typeof src === "object") {
-      this._pointer = src;
       this._ast = options._ast;
+      this._pointer = src;
     } else if (typeof src === "string") {
       this._ast = remark().parse(src);
+      this._pointer = this._ast;
+    } else if (typeof src === "undefined") {
+      this._ast = remark().parse(""); // treat undefined like an empty string.
       this._pointer = this._ast;
     } else {
       throw error.badMarkdownSrc();
@@ -136,8 +140,13 @@ class MarkdownNode {
    * @return {MarkdownNode}
    */
   set(str) {
-    this._pointer.children[0].value = str; // TODO: This is probably going to have some weird effects.
+    // In the case that this node is empty, create something new!
+    if (_.isEmpty(this._pointer.children)) {
+      this._pointer = this._ast = remark().parse(str);
+      return new MarkdownNode(this._pointer, { _ast: this._ast });
+    }
 
+    this._pointer.children[0].value = str; // TODO: This is probably going to have some weird effects.
     return new MarkdownNode(this._pointer, { _ast: this._ast });
   }
 
