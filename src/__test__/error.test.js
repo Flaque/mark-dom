@@ -1,31 +1,21 @@
 const error = require("../error");
 
+const isError = err => Error.prototype.isPrototypeOf(err);
+
 describe("error", () => {
   test("it has badMarkdownSrc error", () => {
     expect(error.badMarkdownSrc).toBeDefined();
   });
 
   test("badMarkdownSrc can return a new Error", () => {
-    expect(Error.prototype.isPrototypeOf(error.badMarkdownSrc())).toBe(true);
+    expect(isError(error.badMarkdownSrc())).toBe(true);
   });
 
-  test("it has headingDoesNotExist error", () => {
-    expect(error.headingDoesNotExist).toBeDefined();
+  test("it has doesNotExist error", () => {
+    expect(error.doesNotExist).toBeDefined();
   });
 
-  test("headingDoesNotExist can return a new Error", () => {
-    expect(Error.prototype.isPrototypeOf(error.headingDoesNotExist())).toBe(
-      true
-    );
-  });
-
-  test("it has paragraphDoesNotExist error", () => {
-    expect(error.paragraphDoesNotExist).toBeDefined();
-  });
-
-  test("paragraphDoesNotExist can return a new Error", () => {
-    expect(Error.prototype.isPrototypeOf(error.paragraphDoesNotExist())).toBe(
-      true
-    );
+  test("doesNotExist can return a new Error", () => {
+    expect(isError(error.doesNotExist())).toBe(true);
   });
 });

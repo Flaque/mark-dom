@@ -1,4 +1,4 @@
-const { base } = require("./testHelper.js");
+const { base, strip } = require("./testHelper.js");
 const mrk = require("../index.js");
 
 // Set
@@ -20,5 +20,21 @@ describe("set function", () => {
     expect(mrk().set("first").paragraph().set("second").getAll()).toBe(
       "second"
     );
+  });
+
+  test("it has a setTable function", () => {
+    expect(mrk().setTable).toBeDefined();
+  });
+
+  test("it can make tables", () => {
+    const table = [["one", "two"], ["a", "b"]];
+    const expectedTable = strip(`
+      | one | two |
+      |---|---|
+      | a | b |
+    `);
+    const actual = strip(mrk().setTable(table).getAll());
+
+    expect(actual).toBe(expectedTable);
   });
 });
