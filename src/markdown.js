@@ -156,8 +156,9 @@ class MarkdownNode {
   }
 
   /**
-   * 
+   * Create a markdown table from an array.
    * @param {Array} array 
+   * @return {MarkdownNode}
    */
   setTable(array) {
     const tableAST = remark().parse(makeTable(array));
@@ -165,6 +166,7 @@ class MarkdownNode {
       _ast: tableAST
     });
 
+    this._pointer.children = []; // THIS IS PRETTY BAD.
     this._pointer.children.push(wrappedTable.table()._pointer); // TODO: HMMM THIS SEEMS FISHY. PROBABLY SHOULD CLEAR SOME STUFF FIRST
 
     return new MarkdownNode(this._pointer, { _ast: this._ast });
