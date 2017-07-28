@@ -1,6 +1,7 @@
 /**
  * @file Defines a MarkdownNode, the main abstraction for the Markdown AST.
  */
+const makeTable = require("markdown-table");
 const remark = require("remark");
 const stringify = require("remark-stringify");
 const _ = require("lodash");
@@ -13,10 +14,10 @@ const query = require("./query");
  */
 
 /**
-  * @private
-  */
-function throwIfNotExist(component, errorType) {
-  if (!component) throw errorType;
+ * @private
+ */
+function throwIfNotExist(component, type) {
+  if (!component) throw error.doesNotExist(type);
 }
 
 /**
@@ -77,6 +78,25 @@ class MarkdownNode {
   }
 
   /**
+   * Gets a new MarkdownNode representing an aribtary AST type.
+   * 
+   * @example
+   * // Returns "# Hello"
+   * mrk().set("# Hello").search("# H*").getAll();
+   * 
+   * @param {String} 
+   * @param {String} [searchWord] A string to search for in the node. Can use wildcard * syntax.
+   */
+  search(type, searchWord) {
+    const node = searchWord
+      ? query.where(this._ast, type, searchWord)
+      : query.first(this._ast, type);
+
+    throwIfNotExist(node, type);
+    return new MarkdownNode(node, { _ast: this._ast });
+  }
+
+  /**
    * Gets a new MarkdownNode representing the first heading it finds.
    * 
    * @example 
@@ -97,12 +117,7 @@ class MarkdownNode {
    * @return {MarkdownNode} A new child node at the next heading.
    */
   heading(searchWord) {
-    const heading = searchWord
-      ? query.where(this._ast, types.HEADING, searchWord)
-      : query.first(this._ast, types.HEADING);
-
-    throwIfNotExist(heading, error.headingDoesNotExist);
-    return new MarkdownNode(heading, { _ast: this._ast });
+    return this.search(types.HEADING, searchWord);
   }
 
   /**
@@ -126,12 +141,33 @@ class MarkdownNode {
    * @return {MarkdownNode}
    */
   paragraph(searchWord) {
-    const paragraph = searchWord
-      ? query.where(this._ast, types.PARAGRAPH, searchWord)
-      : query.first(this._ast, types.PARAGRAPH);
+    return this.search(types.PARAGRAPH, searchWord);
+  }
 
-    throwIfNotExist(paragraph, error.paragraphDoesNotExist);
-    return new MarkdownNode(paragraph, { _ast: this._ast });
+  /**
+   * Gets a new MarkdownNode representing the first paragraph it finds 
+   *
+   * 
+   * @param {String} [searchWord] A string to search for somewhere in the table. Can use wildcard * syntax.
+   * @return {MarkdownNode}
+   */
+  table(searchWord) {
+    return this.search(types.TABLE, searchWord);
+  }
+
+  /**
+   * 
+   * @param {Array} array 
+   */
+  setTable(array) {
+    const tableAST = remark().parse(makeTable(array));
+    const wrappedTable = new MarkdownNode(remark().parse(array), {
+      _ast: tableAST
+    });
+
+    this._pointer.children.push(wrappedTable.table()._pointer); // TODO: HMMM THIS SEEMS FISHY. PROBABLY SHOULD CLEAR SOME STUFF FIRST
+
+    return new MarkdownNode(this._pointer, { _ast: this._ast });
   }
 
   /**

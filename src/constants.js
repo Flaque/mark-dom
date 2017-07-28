@@ -2,6 +2,7 @@ module.exports = {
   types: {
     ROOT: "root",
     HEADING: "heading",
-    PARAGRAPH: "paragraph"
+    PARAGRAPH: "paragraph",
+    TABLE: "table"
   }
 };

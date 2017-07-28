@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
+    "markdown-table": "^1.1.1",
     "matcher": "^1.0.0",
     "remark": "^7.0.1",
     "remark-stringify": "^3.0.1"
@@ -32,7 +33,12 @@
   "jest": {
     "collectCoverage": true,
     "coverageDirectory": "<rootDir>/coverage",
-    "coveragePathIgnorePatterns": ["/node_modules/"],
-    "coverageReporters": ["text", "lcov"]
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ]
   }
 }
